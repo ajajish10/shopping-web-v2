@@ -26,7 +26,7 @@ const mockProducts = [
     description: 'Complete 5-piece drum set including cymbals and stool.',
     price: 699.99,
     image: '/images/shop-drums.jpg',
-    features: ['5-piece shell pack', 'Zildjian cymbals', 'Adjustable drum throne'],
+    features: ['5-piece shell pack', 'zillion cymbals', 'Adjustable drum throne'],
   },
 ];
 
