@@ -1,0 +1,35 @@
+/* src/index.css */
+
+/* Tailwind CSS Core */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9fafb;
+}
+
+/* Optional: Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 255, 0.3);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Optional: Text Selection Color */
+::selection {
+  background-color: #a78bfa; /* Tailwind purple-400 */
+  color: white;
+}
