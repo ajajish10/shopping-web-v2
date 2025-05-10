@@ -1,5 +1,4 @@
-// src/components/Navbar.jsx
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -7,6 +6,7 @@ const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   const handleLogout = async () => {
     try {
@@ -17,24 +17,30 @@ const Navbar = () => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo / Brand */}
         <Link to="/" className="text-2xl font-bold text-purple-700">CoolDaddy</Link>
 
-        {/* Hamburger Menu Button */}
-        <button
-          className="sm:hidden text-gray-600 focus:outline-none"
-          onClick={() => setIsMenuOpen(true)}
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-        </button>
-
-        {/* Desktop Navigation Links */}
-        <div className="hidden sm:flex flex-row space-x-4 text-sm font-medium">
+        <div className="hidden sm:flex flex-row space-x-4 text-sm font-medium items-center">
           <Link to="/courses" className="text-gray-600 hover:text-purple-600 py-1">Courses</Link>
           <Link to="/shop" className="text-gray-600 hover:text-purple-600 py-1">Shop</Link>
           <Link to="/cart" className="text-gray-600 hover:text-purple-600 py-1">Cart</Link>
@@ -42,6 +48,12 @@ const Navbar = () => {
           {currentUser ? (
             <>
               <span className="text-gray-700 py-1">Hi, {currentUser.email}</span>
+              <Link
+                to="/account"  // Assuming you have an account page or route
+                className="text-gray-600 hover:text-purple-600 py-1"
+              >
+                Account
+              </Link>
               <button
                 onClick={handleLogout}
                 className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
@@ -55,13 +67,29 @@ const Navbar = () => {
               <Link to="/register" className="text-gray-600 hover:text-purple-600 py-1">Register</Link>
             </>
           )}
+
+          <div className="ml-4">
+            <img
+              src="/images/user.png" 
+              alt="Account Logo"
+              className="w-8 h-8 rounded-full"
+            />
+          </div>
         </div>
+
+        <button
+          className="sm:hidden text-gray-600 focus:outline-none"
+          onClick={() => setIsMenuOpen(true)}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
-          <div className="fixed top-0 right-0 w-3/4 max-w-sm bg-white h-full shadow-lg z-50">
+          <div ref={menuRef} className="fixed top-0 right-0 w-3/4 max-w-sm bg-white h-full shadow-lg z-50">
             <div className="flex justify-between items-center p-4 border-b">
               <h2 className="text-lg font-bold text-purple-700">Menu</h2>
               <button
@@ -81,6 +109,13 @@ const Navbar = () => {
               {currentUser ? (
                 <>
                   <span className="text-gray-700">Hi, {currentUser.email}</span>
+                  <Link
+                    to="/account"  // Assuming you have an account page or route
+                    className="text-gray-600 hover:text-purple-600"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Account
+                  </Link>
                   <button
                     onClick={() => {
                       handleLogout();
@@ -97,6 +132,14 @@ const Navbar = () => {
                   <Link to="/register" className="text-gray-600 hover:text-purple-600" onClick={() => setIsMenuOpen(false)}>Register</Link>
                 </>
               )}
+
+              <div className="mt-4">
+                <img
+                  src="/images/user.png"
+                  alt="Account Logo"
+                  className="w-8 h-8 rounded-full mx-auto"
+                />
+              </div>
             </div>
           </div>
         </div>
