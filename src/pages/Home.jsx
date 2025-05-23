@@ -1,7 +1,7 @@
 // src/pages/Home.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
+import React from "react";
+import { Link } from "react-router-dom";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -49,7 +49,8 @@ const Home = () => {
             Welcome to CoolDaddy 🎸
           </h1>
           <p className="text-lg sm:text-xl mb-4 sm:mb-6 max-w-md sm:max-w-2xl">
-            Your one-stop destination for music learning and premium instruments.
+            Your one-stop destination for music learning and premium
+            instruments.
           </p>
           <div className="space-y-3 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row">
             <Link
@@ -66,32 +67,37 @@ const Home = () => {
             </Link>
           </div>
         </div>
-
       </section>
 
       {/* Feature Highlights */}
       <section className="py-16 px-6 max-w-7xl mx-auto grid gap-8 md:grid-cols-3 text-center">
         <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <img
-            src="https://i.postimg.cc/XJ9GmBp0/learn-music.jpg"
-            alt="Learn Music"
-            className="w-full h-48 object-cover rounded mb-4"
-          />
+          <Link to="/courses">
+            <img
+              src="https://i.postimg.cc/XJ9GmBp0/learn-music.jpg"
+              alt="Learn Music"
+              className="w-full h-48 object-cover rounded mb-4 cursor-pointer hover:opacity-90 transition"
+            />
+          </Link>
           <h3 className="text-xl font-bold mb-2">Offline Music Courses</h3>
           <p className="text-gray-600">
-            Learn from top instructors with curated offline content tailored just for you.
+            Learn from top instructors with curated offline content tailored
+            just for you.
           </p>
         </div>
 
         <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <img
-            src="https://i.postimg.cc/vm3S9DQb/shop.jpg"
-            alt="Shop"
-            className="w-full h-48 object-cover rounded mb-4"
-          />
+          <Link to="/shop">
+            <img
+              src="https://i.postimg.cc/vm3S9DQb/shop.jpg"
+              alt="Shop"
+              className="w-full h-48 object-cover rounded mb-4"
+            />
+          </Link>
           <h3 className="text-xl font-bold mb-2">Instruments Shop</h3>
           <p className="text-gray-600">
-            High-quality guitars, keyboards, drums, and more available to order instantly.
+            High-quality guitars, keyboards, drums, and more available to order
+            instantly.
           </p>
         </div>
 
@@ -103,7 +109,8 @@ const Home = () => {
           />
           <h3 className="text-xl font-bold mb-2">Music Community</h3>
           <p className="text-gray-600">
-            Join a vibrant community of learners and musicians. Share, connect, grow.
+            Join a vibrant community of learners and musicians. Share, connect,
+            grow.
           </p>
         </div>
       </section>

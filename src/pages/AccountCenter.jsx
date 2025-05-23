@@ -25,66 +25,61 @@ const AccountCenter = () => {
 
     const saveChanges = () => {
         alert('Changes saved successfully!');
-        // Add logic to save changes to the backend
+        // Add backend saving logic here
     };
 
     return (
-        <div style={{ padding: '20px', maxWidth: '400px', margin: 'auto' }}>
-            <h2>Account Center</h2>
-            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-                {profilePic ? (
-                    <img
-                        src={profilePic}
-                        alt="Profile"
-                        style={{ width: '100px', height: '100px', borderRadius: '50%' }}
-                    />
-                ) : (
-                    <FaUserCircle size={100} color="#555" />
-                )}
-                <div>
+        <div className="flex justify-center items-center min-h-screen bg-gradient-to-tr from-purple-100 to-white px-4">
+            <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full">
+                <h2 className="text-2xl font-semibold text-center text-purple-700 mb-6">Account Center</h2>
+
+                <div className="flex flex-col items-center mb-6">
+                    {profilePic ? (
+                        <img
+                            src={profilePic}
+                            alt="Profile"
+                            className="w-24 h-24 rounded-full shadow-md object-cover"
+                        />
+                    ) : (
+                        <FaUserCircle size={96} className="text-gray-400" />
+                    )}
                     <input
                         type="file"
                         accept="image/*"
                         onChange={handleProfilePicChange}
-                        style={{ marginTop: '10px' }}
+                        className="mt-3 text-sm text-gray-500"
                     />
                 </div>
+
+                <div className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={handleUsernameChange}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={handlePasswordChange}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+                        />
+                    </div>
+                </div>
+
+                <button
+                    onClick={saveChanges}
+                    className="mt-6 w-full py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition shadow-md"
+                >
+                    Save Changes
+                </button>
             </div>
-            <div style={{ marginBottom: '20px' }}>
-                <label>
-                    Username:
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={handleUsernameChange}
-                        style={{ marginLeft: '10px', padding: '5px', width: '100%' }}
-                    />
-                </label>
-            </div>
-            <div style={{ marginBottom: '20px' }}>
-                <label>
-                    Password:
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                        style={{ marginLeft: '10px', padding: '5px', width: '100%' }}
-                    />
-                </label>
-            </div>
-            <button
-                onClick={saveChanges}
-                style={{
-                    padding: '10px 20px',
-                    backgroundColor: '#007BFF',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                }}
-            >
-                Save Changes
-            </button>
         </div>
     );
 };
