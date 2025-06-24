@@ -36,8 +36,15 @@ const Courses = () => {
     setCourses(mockCourses);
   }, []);
 
-  const handleEnroll = (title) => {
-    alert(`You've enrolled in ${title} 🎶`);
+  const handleEnroll = (title,description,duration,level) => {
+    const phoneNumber = "91123456789";
+    const message = `I am intersted to Entroll the course ${title} fot ${description} in ${duration} at ${level} 🎶`;
+    // Encode the message for URL
+    const encodeMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeMessage}`;
+
+    // To open WhatsApp in a new tab
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -58,7 +65,7 @@ const Courses = () => {
                 <span>{course.level}</span>
               </div>
               <button
-                onClick={() => handleEnroll(course.title)}
+                onClick={() => handleEnroll(course.title,course.description,course.duration,course.level)}
                 className="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition"
               >
                 Enroll Now
