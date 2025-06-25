@@ -26,6 +26,6 @@ CREATE TABLE cart (
     quantity INT NOT NULL CHECK (quantity > 0),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id), --ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) --ON DELETE CASCADE
 );
