@@ -3,15 +3,23 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
-const port = 3001;
+//const port = 3001;
 
 const app = express();
 app.use(cors());
 
-app.get('/',(req,res) => {
-  return res.json('Welcome to the Music Store API!');
-})
+// Create MySQL connection
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'uswername', // Replace with your MySQL username
+  password: 'password',
+  //database: 'YOUR_DATABASE_NAME'
+});
 
-app.listen(port ,() => {
-  console.log(`Server is running on http://localhost:${port}`);
-})
+db.connect((err) => {
+  if (err) {
+    console.error('Database connection failed:', err.stack);
+    return;
+  }
+  console.log('Connected to MySQL User.');
+});
