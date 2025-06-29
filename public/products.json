@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Acoustic Guitar",
+    "description": "A high-quality acoustic guitar perfect for beginners and pros.",
+    "price": 149.99,
+    "image": "https://i.postimg.cc/nhBrhHGg/Acoustic-Guitar.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Digital Piano",
+    "description": "88-key digital piano with touch-sensitive keys and built-in speakers.",
+    "price": 499.99,
+    "image": "https://i.postimg.cc/qRRpy02k/Digital-Piano.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Drum Kit",
+    "description": "5-piece drum set including cymbals, hardware, and a throne.",
+    "price": 699.99,
+    "image": "https://i.postimg.cc/dtBvHLnq/Drum-Kit.jpg"
+  }
+]
