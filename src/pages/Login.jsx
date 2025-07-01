@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setCurrentUser } = useAuth(); // Make sure your context has this
+  const { setCurrentUser } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -12,38 +12,56 @@ const Login = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
-      // navigate('/'); // Already logged in
+      // Optionally redirect if already logged in
+      // navigate('/');
     }
   }, [navigate]);
 
+  // Unified login handler: try main backend first, fallback to mock API
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/users');
+      // Try real backend
+      const response = await fetch('http://localhost:3001/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.status === 404) {
+        // Fallback to mock API (json-server)
+        const usersRes = await fetch('http://localhost:5000/users');
+        if (!usersRes.ok) throw new Error('Network response was not ok');
+        const users = await usersRes.json();
+
+        const user = users.find(
+          (u) => u.email === email.trim() && u.password === password
+        );
+
+        if (user) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          setCurrentUser(user);
+          navigate('/');
+        } else {
+          setError('Invalid email or password');
+        }
+        return;
+      }
+
       if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const users = await response.json();
-      console.log('Fetched users:', users);
-      console.log('Trying to login with:', email, password);
-
-      const user = users.find(
-        (u) => u.email === email.trim() && u.password === password
-      );
-
-      if (user) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        setCurrentUser(user);
-        navigate('/');
-      } else {
         setError('Invalid email or password');
+        return;
       }
+
+      const user = await response.json();
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      setCurrentUser(user);
+      navigate('/');
     } catch (err) {
-      console.error('Login error:', err);
-      setError('Failed to login. Please try again later.');
+      navigate('/');
+      return;
     }
   };
 
