@@ -1,21 +1,18 @@
-// Backend/server.js
-
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
 
 const app = express();
 app.use(cors());
+app.use(express.json()); // Parse JSON bodies
 
 // Create MySQL connection
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'ecommerce_db' ,
-  multipleStatements: true
+  database: 'ecommerce_db',
+  multipleStatements: true,
 });
 
 db.connect((err) => {
@@ -24,28 +21,33 @@ db.connect((err) => {
     return;
   }
   console.log('Connected to MySQL.');
+});
 
-  // Path to your SQL file
-  const sqlFilePath = path.join(__dirname, '../public/db.sql');
-  console.log('SQL file path:', sqlFilePath);
+// API endpoint to store Register data on user TABLE
+app.post('/register', (req, res) => {
+  const { email, password } = req.body;
 
-  // Read and execute SQL file after DB connection
-  fs.readFile(sqlFilePath, 'utf8', (err, sql) => {
-    if (err) {
-      console.error('Failed to read SQL file:', err);
-      return;
+  // Check if user already exists
+  db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
+    if (err) return res.status(500).json({ error: 'Database error' });
+
+    if (results.length > 0) {
+      return res.status(400).json({ error: 'Email already exists' });
     }
-    db.query(sql, (err, result) => {
-      if (err) {
-        console.error('Failed to execute SQL file:', err);
-        return;
+
+    // Insert new user
+    db.query(
+      'INSERT INTO users (email, password) VALUES (?, ?)',
+      [email, password],
+      (err, result) => {
+        if (err) return res.status(500).json({ error: 'Failed to register user' });
+        res.status(201).json({ message: 'User registered successfully' });
       }
-      console.log('SQL file executed successfully.');
-    });
+    );
   });
 });
 
-// Your routes go here
+// Your other routes go here
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

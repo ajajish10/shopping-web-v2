@@ -16,29 +16,46 @@ const Register = () => {
     }
   }, [currentUser, navigate]);
 
+  // Unified registration handler that supports both real backend and mock API
   const handleRegister = async (e) => {
     e.preventDefault();
     setError('');
 
     try {
-      // Fetch existing users from the mock API
-      const response = await fetch('http://localhost:5000/users');
-      const users = await response.json();
+      // Try main backend registration first
+      const response = await fetch('http://localhost:3001/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-      // Check if email already exists
-      if (users.some((user) => user.email === email)) {
-        setError('Email already exists');
+      // If 404, fallback to mock API
+      if (response.status === 404) {
+        // Mock API fallback
+        const usersRes = await fetch('http://localhost:5000/users');
+        const users = await usersRes.json();
+
+        if (users.some((user) => user.email === email)) {
+          setError('Email already exists');
+          return;
+        }
+
+        await fetch('http://localhost:5000/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+
+        navigate('/login');
         return;
       }
 
-      // Add new user
-      const newUser = { email, password };
+      const data = await response.json();
 
-      await fetch('http://localhost:5000/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newUser),
-      });
+      if (!response.ok) {
+        setError(data.error || 'Failed to register');
+        return;
+      }
 
       navigate('/login'); // Redirect after successful registration
     } catch (err) {
