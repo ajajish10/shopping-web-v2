@@ -1,23 +1,142 @@
 [
   {
     "id": 1,
-    "name": "Acoustic Guitar",
-    "description": "A high-quality acoustic guitar perfect for beginners and pros.",
-    "price": 149.99,
-    "image": "https://i.postimg.cc/nhBrhHGg/Acoustic-Guitar.jpg"
+    "name": "Yamaha F280 Acoustic Guitar",
+    "description": "Dreadnought-style acoustic guitar ideal for beginners.",
+    "price": 7400.00,
+    "image": "https://via.placeholder.com/300?text=Yamaha+F280"
   },
   {
     "id": 2,
-    "name": "Digital Piano",
-    "description": "88-key digital piano with touch-sensitive keys and built-in speakers.",
-    "price": 499.99,
-    "image": "https://i.postimg.cc/qRRpy02k/Digital-Piano.jpg"
+    "name": "Yamaha FS80C Acoustic Guitar",
+    "description": "Concert-body acoustic guitar exclusive to India.",
+    "price": 8200.00,
+    "image": "https://via.placeholder.com/300?text=Yamaha+FS80C"
   },
   {
     "id": 3,
-    "name": "Drum Kit",
-    "description": "5-piece drum set including cymbals, hardware, and a throne.",
-    "price": 699.99,
-    "image": "https://i.postimg.cc/dtBvHLnq/Drum-Kit.jpg"
+    "name": "Casio SA-80 Mini Keyboard",
+    "description": "44-key mini keyboard with 100 built-in tones.",
+    "price": 4900.00,
+    "image": "https://via.placeholder.com/300?text=Casio+SA-80"
+  },
+  {
+    "id": 4,
+    "name": "Casio SA-81 Mini Keyboard",
+    "description": "Compact 44-key keyboard with onboard speakers.",
+    "price": 4800.00,
+    "image": "https://via.placeholder.com/300?text=Casio+SA-81"
+  },
+  {
+    "id": 5,
+    "name": "Sound X SX-100 Drum Kit",
+    "description": "5-piece acoustic drum set with cymbals and hardware.",
+    "price": 27800.00,
+    "image": "https://via.placeholder.com/300?text=Sound+X+SX-100"
+  },
+  {
+    "id": 6,
+    "name": "Vault JB4 Jazz Bass Guitar",
+    "description": "4‑string jazz bass with gig bag.",
+    "price": 9799.00,
+    "image": "https://via.placeholder.com/300?text=Vault+JB4"
+  },
+  {
+    "id": 7,
+    "name": "Cort ACTION BASS V Plus",
+    "description": "5‑string electric bass guitar with versatile tone.",
+    "price": 21128.00,
+    "image": "https://via.placeholder.com/300?text=Cort+Action+Bass+V+Plus"
+  },
+  {
+    "id": 8,
+    "name": "Yamaha Pacifica PACS+12M Electric Guitar",
+    "description": "Solid-body electric guitar with gig bag.",
+    "price": 149990.00,
+    "image": "https://via.placeholder.com/300?text=Yamaha+Pacifica"
+  },
+  {
+    "id": 9,
+    "name": "Yamaha PSR-E283 Portable Keyboard",
+    "description": "61-key portable keyboard with adapter.",
+    "price": 12490.00,
+    "image": "https://via.placeholder.com/300?text=Yamaha+PSR-E283"
+  },
+  {
+    "id": 10,
+    "name": "Vault Performer Pro JB5 Bass Guitar",
+    "description": "5‑string bass in high-gloss mahogany with gig bag.",
+    "price": 35099.00,
+    "image": "https://via.placeholder.com/300?text=Vault+JB5"
+  },
+  {
+    "id": 11,
+    "name": "Gretsch G2220 Junior Jet Bass II",
+    "description": "Tobacco sunburst 4‑string bass with vintage tone.",
+    "price": 39568.00,
+    "image": "https://via.placeholder.com/300?text=Gretsch+G2220"
+  },
+  {
+    "id": 12,
+    "name": "Ibanez SR300E Bass Guitar",
+    "description": "4‑string SR series bass with IP transparent finish.",
+    "price": 3240.00,
+    "image": "https://via.placeholder.com/300?text=Ibanez+SR300E"
+  },
+  {
+    "id": 13,
+    "name": "Radhe C Natural Flute",
+    "description": "Right-handed C flute with velvet cover.",
+    "price": 349.00,
+    "image": "https://via.placeholder.com/300?text=Radhe+Flute"
+  },
+  {
+    "id": 14,
+    "name": "Juârez Acoustic Guitar Kit",
+    "description": "38\" cutaway guitar with bag, picks and strap.",
+    "price": 2179.00,
+    "image": "https://via.placeholder.com/300?text=Juarez+Guitar+Kit"
+  },
+  {
+    "id": 15,
+    "name": "Medellin 38\" Acoustic Guitar",
+    "description": "Budget acoustic guitar complete with course access.",
+    "price": 1999.00,
+    "image": "https://via.placeholder.com/300?text=Medellin+38"
+  },
+  {
+    "id": 16,
+    "name": "Kadence Frontier Acoustic Guitar",
+    "description": "Starter guitar with die-cast tuners and picks.",
+    "price": 4444.00,
+    "image": "https://via.placeholder.com/300?text=Kadence+Frontier"
+  },
+  {
+    "id": 17,
+    "name": "Yamaha PSR-E383 Keyboard",
+    "description": "61-key portable keyboard with adapter.",
+    "price": 17990.00,
+    "image": "https://via.placeholder.com/300?text=Yamaha+PSR-E383"
+  },
+  {
+    "id": 18,
+    "name": "Portronics Dash 7 Wireless Microphone",
+    "description": "Omnidirectional Type-C lapel mic with noise cancellation.",
+    "price": 779.00,
+    "image": "https://via.placeholder.com/300?text=Portronics+Dash+7"
+  },
+  {
+    "id": 19,
+    "name": "JBL CSLM30B Lavalier Microphone",
+    "description": "Aux-lavalier mic for content creation.",
+    "price": 1799.00,
+    "image": "https://via.placeholder.com/300?text=JBL+CSLM30B"
+  },
+  {
+    "id": 20,
+    "name": "Mommers Xylophone Educational Toy",
+    "description": "2‑in‑1 piano and xylophone for toddlers.",
+    "price": 199.00,
+    "image": "https://via.placeholder.com/300?text=Mommers+Xylophone"
   }
 ]

@@ -1,0 +1,49 @@
++-----------+      +-------------+      +---------------+
+|   User    |◄────►|   Order     |◄────►|  OrderItem     |
++-----------+      +-------------+      +---------------+
+| id        |      | id          |      | id            |
+| name      |      | user_id     |      | order_id      |
+| email     |      | total       |      | product_id    |
+| password  |      | status      |      | quantity      |
+| role      |      | payment_id  |      | price         |
++-----------+      +-------------+      +---------------+
+     ▲
+     │
+     │ (role = 'admin')
+     │
++-------------+
+|   Product   |◄─────┐
++-------------+      │
+| id          |      │
+| name        |      │
+| description |      │
+| price       |      │
+| category_id │──────┘
++-------------+
+      ▲
+      │
++-------------+
+|  Category   |
++-------------+
+| id          |
+| name        |
++-------------+
+
++-------------+
+|  Payment    |
++-------------+
+| id          |
+| method      |
+| status      |
+| amount      |
++-------------+
+
++-------------+
+|   Review    |
++-------------+
+| id          |
+| user_id     |
+| product_id  |
+| rating      |
+| comment     |
++-------------+
